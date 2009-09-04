@@ -23,3 +23,5 @@ syncserver='http://rhosync.local/apps/Store/sources/'
 MinSeverity=0
 LogToOutput=1
 MaxLogFileSize=0
+
+sync_poll_interval=0

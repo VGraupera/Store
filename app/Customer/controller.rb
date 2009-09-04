@@ -36,7 +36,7 @@ class CustomerController < Rho::RhoController
   def search_callback
     status = @params['status']
     if (status && status == 'ok')
-      WebView.navigate ( url_for :action => :index ) #show_page, :query => {:query => @params['?search_params'], :page => @params['page']} )
+      WebView.navigate ( url_for :action => :show_page, :query => {:query => @params['?search_params'], :page => @params['page']} )
     end
     #TODO: show error page if status == 'error'
     render :action => :ok
@@ -46,12 +46,10 @@ class CustomerController < Rho::RhoController
     render :action => :ok
   end
   
-  # not used
   def show_page
-    @contacts = Customer.find(:all,
-      :conditions => { :first =>@params['query']},
-      :per_page => Page_size, :offset => @params['page'].to_i*Page_size )    
-    render :action => :show_page
+    @customers = Customer.find(:all,
+      :conditions => { :first => @params['query'] } )    
+    render :action => :index
   end
 
   # GET /Customer/{1}
